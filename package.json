@@ -3,10 +3,13 @@
     "title": "HTML Block Selector",
     "description": "You can use Ctrl+Shift+T to select block of HTML. Ctrl+Click and Ctrl+Shift+Click is available via brackets.json preference file.",
     "homepage": "https://github.com/sathyamoorthi/html-block-selector",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Sathyamoorthi<sathyamoorthi10@gmail.com>",
     "files": [
         "main.js",
         "README.md"
-    ]
+    ],
+    "engines": {
+        "brackets": ">0.27.0"
+    }
 }
