@@ -3,7 +3,7 @@ Another extension for Brackets.
 Ctrl+Shift+T - default option.
 
 **Options Available via Preferences:**
-You can also use Ctrl+Click Or Ctrl+Shift+Click. To turn on these options goto brcakets.json (Debug -> Open Preferences File) and configure like below. Turn on / off based on your wish.
+You can also use Ctrl+Click Or Ctrl+Shift+Click. To turn on these options goto brackets.json (Debug -> Open Preferences File) and configure like below. Turn on / off based on your wish.
 ```
 "htmlblockselector.ctrlclick": true,
 "htmlblockselector.ctrlshiftclick": true
