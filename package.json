@@ -1,9 +1,9 @@
 {
     "name": "html-block-selector",
     "title": "HTML Block Selector",
-    "description": "Ctrl/Cmd + Click html tag, this extension will select the entire html block. You can use Ctrl+Shift+T also.",
+    "description": "You can use Ctrl+Shift+T to select block of HTML. Ctrl+Click and Ctrl+Shift+Click is available via brackets.json preference file.",
     "homepage": "https://groups.google.com/forum/#!topic/brackets-dev/igPQ9V0cgWQ",
-    "version": "0.0.5",
+    "version": "1.0.0",
     "author": "Sathyamoorthi<sathyamoorthi10@gmail.com>",
     "files": [
         "main.js",

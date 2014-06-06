@@ -31,7 +31,14 @@ define(function (require, exports, module) {
     var EditorManager       = brackets.getModule("editor/EditorManager"),
         KeyBindingManager   = brackets.getModule("command/KeyBindingManager"),
         CommandManager      = brackets.getModule("command/CommandManager"),
-        shortcutCommand     = "htmlblockselector.select";
+        PreferencesManager  = brackets.getModule("preferences/PreferencesManager"),
+        shortcutCommand     = "htmlblockselector.select",
+        ctrlClickPref       = "ctrlclick",
+        ctrlShiftClickPref  = "ctrlshiftclick",
+        preference;
+    
+    //https://github.com/sathyamoorthi/html-block-selector/issues/1    
+    preference = PreferencesManager.getExtensionPrefs("htmlblockselector");
   
     function selectHTMLBlock() {
         var editor = EditorManager.getActiveEditor(),
@@ -52,15 +59,26 @@ define(function (require, exports, module) {
             }
         }
     }
-
-    //to handle mouse click.
-    $("html").on("mousedown", function (e) {
-        if (e.ctrlKey || e.metaKey) {
-            selectHTMLBlock();
+    
+    function listenMouseClick() {
+        var ctrl      = preference.get(ctrlClickPref),
+            ctrlshift = preference.get(ctrlShiftClickPref);
+        
+        if (ctrl === true || ctrlshift === true) {            
+            $("html").on("mousedown", function (e) {
+                if ((e.ctrlKey || e.metaKey) && ((ctrl && !e.shiftKey) || (ctrlshift && e.shiftKey))) {
+                    selectHTMLBlock();
+                }
+            });
         }
-    });
+    }
+    
   
     //keyboard handling
     KeyBindingManager.addBinding(shortcutCommand, "Ctrl-Shift-T");
-    CommandManager.register("Convert To Lower Case", shortcutCommand, selectHTMLBlock);
+    CommandManager.register("HTML block select", shortcutCommand, selectHTMLBlock);
+        
+    preference.definePreference(ctrlClickPref, "boolean", false).on("change", listenMouseClick);
+    preference.definePreference(ctrlShiftClickPref, "boolean", false).on("change", listenMouseClick);    
+    preference.save();
 });
